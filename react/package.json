@@ -1,0 +1,19 @@
+{
+  "name": "vtex.formula",
+  "version": null,
+  "scripts": {
+    "test": "jest"
+  },
+  "dependencies": {
+    "classnames": "^2.2.5",
+    "prop-types": "^15.5.10",
+    "ramda": "^0.25.0"
+  },
+  "devDependencies": {
+    "graphql": "^0.13.0",
+    "react": "^16.2.0",
+    "react-apollo": "^2.0.4",
+    "react-dom": "^16.2.0",
+    "react-intl": "^2.4.0"
+  }
+}

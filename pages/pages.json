@@ -1,0 +1,12 @@
+{
+  "pages": {
+    "formula": {
+      "path": "/formula"
+    }
+  },
+  "extensions": {
+    "formula": {
+      "component": "index"
+    }
+  }
+}
