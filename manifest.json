@@ -3,11 +3,11 @@
   "vendor": "vtex",
   "version": "0.0.0",
   "title": "VTEX Formula",
-  "description": "The VTEX Formula hackathon manager",
+  "description": "The VTEX Formula Hackathon Manager",
   "credentialType": "absolute",
   "settingsSchema": {},
   "dependencies": {
-    "vtex.admin-graphql": "1.x",
+    "vtex.formula-graphql": "0.x",
     "vtex.styleguide": "6.x"
   },
   "builders": {
@@ -16,9 +16,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/vtex/formula.git"
+    "url": "git://github.com/vtex-apps/formula.git"
   },
   "scripts": {
+    "prereleasy": "bash lint.sh",
     "postreleasy": "vtex publish --verbose"
   }
 }

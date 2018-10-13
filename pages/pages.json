@@ -1,12 +1,25 @@
 {
   "pages": {
     "formula": {
+      "path": "/formula",
+      "cname": "formula.vtex.io"
+    },
+    "formula/intro": {
       "path": "/formula"
+    },
+    "formula/projects": {
+      "path": "/formula/projects"
     }
   },
   "extensions": {
     "formula": {
-      "component": "index"
+      "component": "Template"
+    },
+    "formula/intro": {
+      "component": "Intro"
+    },
+    "formula/projects": {
+      "component": "Projects"
     }
   }
 }

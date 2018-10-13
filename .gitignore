@@ -6,3 +6,4 @@ service/**/!(main).js
 react/node_modules
 react/.DS_Store
 react/vendor/.DS_Store
+react/yarn-error.log

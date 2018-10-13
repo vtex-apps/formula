@@ -1,0 +1,16 @@
+query Projects{
+  profile {
+    id
+    name
+    email
+    picture
+  }
+  projects (edition: "2018.10") {
+    id
+    name
+    description
+    demoURL
+    owner
+    team
+  }
+}
