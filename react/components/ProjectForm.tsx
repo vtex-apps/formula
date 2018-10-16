@@ -2,8 +2,10 @@ import { Formik } from 'formik'
 import React, { Component } from 'react'
 import { Mutation } from 'react-apollo'
 import { FormattedMessage } from 'react-intl'
+import { withRuntimeContext } from 'render'
 import { Button } from 'vtex.styleguide'
 
+import DeleteProjectMutation from '../queries/deleteProject.graphql'
 import ProjectsQuery from '../queries/projects.graphql'
 import UpdateProjectMutation from '../queries/updateProject.graphql'
 
@@ -16,7 +18,11 @@ interface ProjectFormState {
   project: Project
 }
 
-export default class ProjectForm extends Component<ProjectFormProps, ProjectFormState> {
+interface RuntimeProps {
+  runtime: any
+}
+
+class ProjectForm extends Component<ProjectFormProps & RuntimeProps, ProjectFormState> {
   constructor(props: any) {
     super(props)
 
@@ -41,6 +47,20 @@ export default class ProjectForm extends Component<ProjectFormProps, ProjectForm
         edition,
       }
     }
+
+    const handleDeleteSuccess = () => this.props.runtime.navigate({page: 'formula/projects/list', params: {edition}})
+
+    const deleteButton = project.id && (
+      <Mutation mutation={DeleteProjectMutation} refetchQueries={[refetchProjectsQuery]}>
+        {(deleteProject) => {
+          return (
+            <Button variation="tertiary" onClick={() => deleteProject({variables: {edition, id: project.id}}).then(handleDeleteSuccess)} >
+              <FormattedMessage id="formula.delete" />
+            </Button>
+          )
+        }}
+      </Mutation>
+    )
 
     return (
       <div className="bg-white ma5 ba1 b-dark-silver">
@@ -107,6 +127,7 @@ export default class ProjectForm extends Component<ProjectFormProps, ProjectForm
                     />
                     {errors.description && touched.description && errors.description}
                     {team}
+                    {deleteButton}
                     <Button type="submit" disabled={isSubmitting}>
                       <FormattedMessage id="formula.save" />
                     </Button>
@@ -120,3 +141,5 @@ export default class ProjectForm extends Component<ProjectFormProps, ProjectForm
     )
   }
 }
+
+export default withRuntimeContext(ProjectForm)

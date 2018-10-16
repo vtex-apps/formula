@@ -9,5 +9,6 @@
   "formula.save": "Save",
   "formula.join": "Join Team",
   "formula.leave": "Leave Team",
+  "formula.delete": "Delete",
   "formula.newProject": "Create a project"
 }
