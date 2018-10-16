@@ -27,8 +27,9 @@ declare module 'render' {
 
   const NoSSR: ReactElement
   const Link: ReactElement
+  const withRuntimeContext: ReactElement
 
-  export { NoSSR, Helmet, Link }
+  export { NoSSR, Helmet, Link, withRuntimeContext }
 }
 
 interface Project {

@@ -19,7 +19,7 @@ export default class ProjectCard extends Component<{} & Project> {
         <section>
           <h3><FormattedMessage id="formula.team" /></h3>
           <ul>
-            {team && team.map((u) => <li>{u}</li>)}
+            {team && team.map((u) => <li key={u}>{u}</li>)}
           </ul>
         </section>
         <Link page="formula/projects/detail" params={{edition, id}}>

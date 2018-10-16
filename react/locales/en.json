@@ -4,5 +4,8 @@
   "formula.signup": "Sign Up",
   "formula.logout": "Logout",
   "formula.seeDetails": "Details",
-  "formula.team": "Team"
+  "formula.team": "Team",
+  "formula.back": "Back",
+  "formula.save": "Save",
+  "formula.newProject": "Create a project"
 }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { graphql } from 'react-apollo'
+import { Query } from 'react-apollo'
 import { FormattedMessage } from 'react-intl'
 import { Link } from 'render'
 import { Button, Spinner } from 'vtex.styleguide'
@@ -13,37 +13,42 @@ interface ProjectsData {
   params: any
 }
 
-class ProjectDetail extends Component<{} & ProjectsData> {
+interface ProjectState {
+  project: Project
+}
+
+export default class ProjectDetail extends Component<{} & ProjectsData, ProjectState> {
   constructor(props: any) {
     super(props)
+
+    this.state = {
+      project: props.data && props.data.project || {}
+    }
   }
 
   public render() {
-    const { data, params: { edition } } = this.props
+    const { params: { edition, id } } = this.props
 
-    if (data && data.loading) {
-      return <Spinner />
-    }
 
     return (
-      <div className="w-100 h-100 bg-light-silver overflow-hidden overflow-y-scroll">
-        <Link page="formula/projects/list" params={{edition}}>
-          <Button>
-            <FormattedMessage id="formula.back" />
-          </Button>
-        </Link>
-        <ProjectForm {...data.project} />
-      </div>
+      <Query query={ProjectDetailQuery} skip={id === 'new'} variables={{edition, id}}>
+        {({ loading, error, data = {} }) => {
+          if (loading) {
+            return <Spinner />
+          }
+
+          return (
+            <div className="w-100 h-100 bg-light-silver overflow-hidden overflow-y-scroll">
+              <Link page="formula/projects/list" params={{edition}}>
+                <Button>
+                  <FormattedMessage id="formula.back" />
+                </Button>
+              </Link>
+              <ProjectForm initialProject={data.project} edition={edition} />
+            </div>
+          )
+        }}
+      </Query>
     )
   }
 }
-
-export default graphql<ProjectsData>(ProjectDetailQuery, {
-  options: ({params: {edition, id}}) => ({
-    ssr: false,
-    variables: {
-      edition,
-      id
-    }
-  })
-})(ProjectDetail)

@@ -1,8 +1,19 @@
 import React, { Component } from 'react'
 import { FormattedMessage } from 'react-intl'
-import { Link } from 'render'
+import { Link, withRuntimeContext } from 'render'
 
-export default class IntroPage extends Component {
+interface RuntimeProps {
+  runtime: any
+}
+
+class IntroPage extends Component<RuntimeProps> {
+  componentDidMount() {
+    const { runtime: { prefetchPage } } = this.props
+    prefetchPage('formula/projects')
+    prefetchPage('formula/projects/list')
+    prefetchPage('formula/projects/detail')
+  }
+
   render() {
     return (
       <div>
@@ -14,3 +25,5 @@ export default class IntroPage extends Component {
     )
   }
 }
+
+export default withRuntimeContext(IntroPage)
