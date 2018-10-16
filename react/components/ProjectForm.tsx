@@ -84,7 +84,7 @@ class ProjectForm extends Component<ProjectFormProps & RuntimeProps, ProjectForm
                       ...project,
                       ...values,
                     }
-                  }).then((d) => {
+                  }).then((d: any) => {
                     console.log('updateProject.then', d.data.updateProject.id)
                     this.setState({
                       project: {
