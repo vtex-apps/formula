@@ -7,7 +7,9 @@ export default class IntroPage extends Component {
     return (
       <div>
         O que é o Formula?
-        <Link page="formula/projects">Entrar</Link>
+        <Link page="formula/projects/list" params={{edition: "2018.10"}}>
+          <FormattedMessage id="formula.signup"/>
+        </Link>
       </div>
     )
   }

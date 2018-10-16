@@ -1,3 +1,8 @@
 {
-  "formula.title": "Formula"
+  "formula.title": "Formula",
+  "formula.hello": "Hello,",
+  "formula.signup": "Sign Up",
+  "formula.logout": "Logout",
+  "formula.seeDetails": "Details",
+  "formula.team": "Team"
 }

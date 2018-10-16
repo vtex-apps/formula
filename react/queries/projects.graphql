@@ -1,11 +1,5 @@
-query Projects{
-  profile {
-    id
-    name
-    email
-    picture
-  }
-  projects (edition: "2018.10") {
+query Projects ($edition: String!) {
+  projects (edition: $edition) {
     id
     name
     description

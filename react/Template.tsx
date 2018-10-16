@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { Helmet } from 'render'
 import { FormattedMessage } from 'react-intl'
 
+import VtexIcon from './icons/VtexIcon'
+
 import './global.css'
 
 export default class FormulaTemplate extends Component {
@@ -18,7 +20,7 @@ export default class FormulaTemplate extends Component {
           {this.props.children}
         </main>
         <footer>
-          VTEX Formula - all rights reserved ©
+          VTEX Formula - all rights reserved © <VtexIcon />
         </footer>
       </div>
     )

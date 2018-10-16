@@ -1,4 +1,4 @@
-query Profile{
+query Profile {
   profile {
     id
     name

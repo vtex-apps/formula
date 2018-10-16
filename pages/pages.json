@@ -8,7 +8,13 @@
       "path": "/formula"
     },
     "formula/projects": {
-      "path": "/formula/projects"
+      "path": "/formula/*path"
+    },
+    "formula/projects/list": {
+      "path": "/formula/:edition"
+    },
+    "formula/projects/detail": {
+      "path": "/formula/:edition/:id"
     }
   },
   "extensions": {
@@ -19,7 +25,13 @@
       "component": "Intro"
     },
     "formula/projects": {
-      "component": "Projects"
+      "component": "ProjectTemplate"
+    },
+    "formula/projects/list": {
+      "component": "ProjectList"
+    },
+    "formula/projects/detail": {
+      "component": "ProjectDetail"
     }
   }
 }
