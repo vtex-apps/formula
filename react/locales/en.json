@@ -7,5 +7,7 @@
   "formula.team": "Team",
   "formula.back": "Back",
   "formula.save": "Save",
+  "formula.join": "Join Team",
+  "formula.leave": "Leave Team",
   "formula.newProject": "Create a project"
 }

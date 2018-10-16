@@ -35,7 +35,7 @@ export default class ProjectList extends Component<{} & ProjectsData> {
                 <FormattedMessage id="formula.newProject" />
               </Button>
             </Link>
-            {data.projects.map((p: Project) => <ProjectCard key={p.id} {...p} edition={edition} />)}
+            {data.projects.map((p: Project) => <ProjectCard key={p.id} {...p} email={data.profile.email} edition={edition} />)}
           </div>
           )
         }}
