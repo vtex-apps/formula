@@ -18,10 +18,6 @@ interface ProjectFormState {
   project: Project
 }
 
-interface RuntimeProps {
-  runtime: any
-}
-
 class ProjectForm extends Component<ProjectFormProps & RuntimeProps, ProjectFormState> {
   constructor(props: any) {
     super(props)

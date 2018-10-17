@@ -5,7 +5,8 @@ body,
 #render-container,
 #render-provider,
 .render-container,
-.render-provider {
+.render-provider,
+.container {
   height: 100%;
 }
 

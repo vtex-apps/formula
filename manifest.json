@@ -8,7 +8,7 @@
   "settingsSchema": {},
   "dependencies": {
     "vtex.formula-graphql": "0.x",
-    "vtex.styleguide": "6.x"
+    "vtex.styleguide": "7.x"
   },
   "builders": {
     "pages": "0.x",

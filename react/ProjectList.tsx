@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 import { Query } from 'react-apollo'
-import { FormattedMessage } from 'react-intl'
-import { Link } from 'render'
-import { Button, Spinner } from 'vtex.styleguide'
+import { Spinner } from 'vtex.styleguide'
 
 import ProjectsQuery from './queries/projects.graphql'
 
+import Navigation from './components/Navigation'
 import ProjectCard from './components/ProjectCard'
 
 interface ProjectsData {
@@ -29,14 +28,10 @@ export default class ProjectList extends Component<{} & ProjectsData> {
           }
 
           return (
-            <div className="w-100 h-100 bg-light-silver overflow-hidden overflow-y-scroll">
-            <Link page="formula/projects/detail" params={{edition, id: 'new'}}>
-              <Button>
-                <FormattedMessage id="formula.newProject" />
-              </Button>
-            </Link>
-            {data.projects.map((p: Project) => <ProjectCard key={p.id} {...p} email={data.profile.email} edition={edition} />)}
-          </div>
+            <div>
+              <Navigation edition={edition} />
+              {data.projects.map((p: Project) => <ProjectCard key={p.id} {...p} email={data.profile.email} edition={edition} />)}
+            </div>
           )
         }}
       </Query>

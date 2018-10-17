@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { graphql } from 'react-apollo'
-import { FormattedMessage } from 'react-intl'
-import { Button, Spinner } from 'vtex.styleguide'
+import { Spinner } from 'vtex.styleguide'
 
 import ProfileQuery from './queries/profile.graphql'
 
-import LogoutIcon from './icons/LogoutIcon'
+import Header from './components/Header'
+import Timer from './components/Timer'
 
 interface ProjectsData {
   data: any
@@ -56,12 +56,9 @@ class ProjectTemplate extends Component<{} & ProjectsData, ProjectsState> {
       : ''
 
     return (
-      <div className="w-100 h-100 bg-light-silver overflow-hidden overflow-y-scroll">
-        <FormattedMessage id="formula.hello"/> {firstName}
-        <Button variation="secondary" onClick={this.logout}>
-          <LogoutIcon /><FormattedMessage id="formula.logout"/>
-        </Button>
-        <br/>
+      <div className="">
+        <Header name={firstName} onLogout={this.logout}/>
+        <Timer time="24:00:00"/>
         {this.props.children}
       </div>
     )

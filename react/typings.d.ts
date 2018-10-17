@@ -17,8 +17,9 @@ declare module 'vtex.styleguide' {
   const Tabs: ReactElement
   const Radio: ReactElement
   const Spinner: ReactElement
+  const PageHeader: ReactElement
 
-  export { Badge, Button, Checkbox, Dropdown, IconCaretRight, Tab, Tabs, Radio, Spinner }
+  export { Badge, Button, Checkbox, Dropdown, IconCaretRight, Tab, Tabs, Radio, Spinner, PageHeader }
 }
 
 declare module 'render' {
@@ -40,4 +41,8 @@ interface Project {
   name?: string
   owner?: string
   team?: string[]
+}
+
+interface RuntimeProps {
+  runtime: any
 }

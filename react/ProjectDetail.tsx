@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Query } from 'react-apollo'
 import { FormattedMessage } from 'react-intl'
-import { Link } from 'render'
-import { Button, Spinner } from 'vtex.styleguide'
+import { withRuntimeContext } from 'render'
+import { PageHeader, Spinner } from 'vtex.styleguide'
 
 import ProjectDetailQuery from './queries/project.graphql'
 
@@ -17,7 +17,7 @@ interface ProjectState {
   project: Project
 }
 
-export default class ProjectDetail extends Component<{} & ProjectsData, ProjectState> {
+class ProjectDetail extends Component<ProjectsData & RuntimeProps, ProjectState> {
   constructor(props: any) {
     super(props)
 
@@ -27,8 +27,7 @@ export default class ProjectDetail extends Component<{} & ProjectsData, ProjectS
   }
 
   public render() {
-    const { params: { edition, id } } = this.props
-
+    const { params: { edition, id }, runtime } = this.props
 
     return (
       <Query query={ProjectDetailQuery} skip={id === 'new'} variables={{edition, id}}>
@@ -38,12 +37,14 @@ export default class ProjectDetail extends Component<{} & ProjectsData, ProjectS
           }
 
           return (
-            <div className="w-100 h-100 bg-light-silver overflow-hidden overflow-y-scroll">
-              <Link page="formula/projects/list" params={{edition}}>
-                <Button>
-                  <FormattedMessage id="formula.back" />
-                </Button>
-              </Link>
+            <div className="pa7 bg-white">
+              <PageHeader
+                title={<FormattedMessage id="formula.projectDetails" />}
+                linkLabel={<FormattedMessage id="formula.back" />}
+                onLinkClick={() => {
+                  runtime.navigate({page: 'formula/projects/list', params: {edition}})
+                }}
+              />
               <ProjectForm initialProject={data.project} edition={edition} />
             </div>
           )
@@ -52,3 +53,5 @@ export default class ProjectDetail extends Component<{} & ProjectsData, ProjectS
     )
   }
 }
+
+export default withRuntimeContext(ProjectDetail)

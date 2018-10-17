@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import { FormattedMessage } from 'react-intl'
 import { Link, withRuntimeContext } from 'render'
+import { Button } from 'vtex.styleguide'
 
-interface RuntimeProps {
-  runtime: any
-}
+import Header from './components/Header'
 
 class IntroPage extends Component<RuntimeProps> {
   componentDidMount() {
@@ -17,9 +16,11 @@ class IntroPage extends Component<RuntimeProps> {
   render() {
     return (
       <div>
-        O que é o Formula?
+        <Header />
         <Link page="formula/projects/list" params={{edition: "2018.10"}}>
-          <FormattedMessage id="formula.signup"/>
+          <Button variation="primary">
+            <FormattedMessage id="formula.signup"/>
+          </Button>
         </Link>
       </div>
     )
