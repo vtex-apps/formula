@@ -3,6 +3,9 @@ mutation JoinProject(
   $id: String!
 ) {
   joinProject(edition: $edition, id: $id) {
-    team
+    team {
+      name
+      email
+    }
   }
 }

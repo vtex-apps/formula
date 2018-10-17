@@ -10,5 +10,7 @@
   "formula.join": "Join Team",
   "formula.leave": "Leave Team",
   "formula.delete": "Delete",
-  "formula.newProject": "Create a project"
+  "formula.newProject": "Create a project",
+  "formula.timeToStart": "It's almost time!",
+  "formula.projectDetails": "Project"
 }

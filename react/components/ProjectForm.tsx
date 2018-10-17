@@ -33,7 +33,7 @@ class ProjectForm extends Component<ProjectFormProps & RuntimeProps, ProjectForm
 
     const team = project && project.id && project.team && (
       <ul>
-        {project.team.map((u) => <li key={u}>{u}</li>)}
+        {project.team.map((u) => <li key={u.id}>{u.name} - {u.email}</li>)}
       </ul>
     )
 

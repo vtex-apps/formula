@@ -29,7 +29,7 @@ export default class ProjectCard extends Component<ProjectCardProps & Project> {
 
     const isOwner = owner === email
 
-    const isInTeam = team && team.find((t) => t === email)
+    const isInTeam = team && team.find((t) => t.email === email)
 
     const joinOrLeave = isInTeam ? (
       <Mutation mutation={LeaveProjectMutation} refetchQueries={[refetchProjectsQuery]}>
@@ -67,7 +67,7 @@ export default class ProjectCard extends Component<ProjectCardProps & Project> {
         <section>
           <div className="f4 fw5"><FormattedMessage id="formula.team" /></div>
           <ul className="list pl0 mb7">
-            {team && team.map((u) => <li key={u}>{u}</li>)}
+            {team && team.map((u) => <li key={u.id}>{u.name} - {u.email}</li>)}
           </ul>
         </section>
         {!isOwner && joinOrLeave}

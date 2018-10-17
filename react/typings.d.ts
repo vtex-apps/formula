@@ -40,7 +40,14 @@ interface Project {
   id?: string
   name?: string
   owner?: string
-  team?: string[]
+  team?: ProfileData[]
+}
+
+interface ProfileData {
+  id: string
+  name: string
+  email: string
+  picture: string
 }
 
 interface RuntimeProps {

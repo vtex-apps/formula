@@ -8,6 +8,11 @@ query Project ($edition: String!, $id: String!) {
     description
     demoURL
     owner
-    team
+    team {
+      id
+      email
+      name
+      profile
+    }
   }
 }

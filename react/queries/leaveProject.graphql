@@ -3,6 +3,9 @@ mutation LeaveProject(
   $id: String!
 ) {
   leaveProject(edition: $edition, id: $id) {
-    team
+    team {
+      name
+      email
+    }
   }
 }
