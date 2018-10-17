@@ -12,14 +12,14 @@ class Navigation extends Component<NavigationProps & RuntimeProps> {
     const { edition, runtime } = this.props
 
     return (
-      <div className="relative">
+      <div className="relative mw7 center mt7">
         <Tabs>
           <Tab label="Projects" active={runtime.page === 'formula/projects/list'} onClick={() => runtime.navigate({page: 'formula/projects/list', params: {edition}})} />
           <Tab label="Finalists" active={runtime.page === 'formula/projects/finalists'} onClick={() => runtime.navigate({page: 'formula/projects/list', params: {edition}})}/>
         </Tabs>
 
-        <Link page="formula/projects/detail" params={{edition, id: 'new'}} className="absolute" style={{top: '1em', right: '1em'}}>
-          <Button>
+        <Link page="formula/projects/detail" params={{edition, id: 'new'}} className="absolute" style={{top: '1em', right: '0em', bottom: '1em'}}>
+          <Button size="small" className="pb4">
             <FormattedMessage id="formula.newProject" />
           </Button>
         </Link>

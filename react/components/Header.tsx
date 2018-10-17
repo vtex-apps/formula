@@ -15,7 +15,7 @@ export default class Header extends Component<HeaderProps> {
     const { name, onLogout } = this.props
 
     const title = (
-      <h1><FormattedMessage id="formula.title"/></h1>
+      <h3><FormattedMessage id="formula.title"/></h3>
     )
 
     const hello = name && (
@@ -32,10 +32,18 @@ export default class Header extends Component<HeaderProps> {
 
     return (
       <header className="bg-serious-black pa7 white">
-        <VtexIcon fill="white" logo/>
-        {title}
-        {hello}
-        {logout}
+        <div className="flex items-center justify-between">
+          <div className="flex items-center">
+            <VtexIcon fill="white" logo/>
+            <div className="pr3">
+              {title}
+            </div>
+            {hello}
+          </div>
+          <div>
+            {logout}
+          </div>
+        </div>
       </header>
     )
   }

@@ -8,7 +8,7 @@ import './global.css'
 export default class FormulaTemplate extends Component {
   render() {
     return (
-      <div className="container bg-light-silver">
+      <div className="container bg-muted-5">
         <Helmet>
           <title>VTEX Formula</title>
         </Helmet>

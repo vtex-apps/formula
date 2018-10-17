@@ -54,21 +54,23 @@ export default class ProjectCard extends Component<ProjectCardProps & Project> {
     )
 
     return (
-      <div className="bg-white ma5 ba1 b-dark-silver">
-        <h1>{name}</h1>
-        <h3>{description}</h3>
+      <div className="bg-base ma5 ba1 b-dark-silver center mw7 pa7 mt7 br2">
+        <div className="flex justify-between items-center pb6">
+          <div className="f4 fw5 pb3">{name}</div>
+          <Link page="formula/projects/detail" params={{edition, id}}>
+            <div className="c-emphasis no-underline" style={{textDecoration: 'none' }}>
+              <FormattedMessage id="formula.seeDetails" />
+            </div>
+          </Link>
+        </div>
+        <div className="f5 bb b--muted-5 mb7 pb7 fw3">{description}</div>
         <section>
-          <h3><FormattedMessage id="formula.team" /></h3>
-          <ul>
+          <div className="f4 fw5"><FormattedMessage id="formula.team" /></div>
+          <ul className="list pl0 mb7">
             {team && team.map((u) => <li key={u}>{u}</li>)}
           </ul>
         </section>
         {!isOwner && joinOrLeave}
-        <Link page="formula/projects/detail" params={{edition, id}}>
-          <Button>
-            <FormattedMessage id="formula.seeDetails" />
-          </Button>
-        </Link>
       </div>
     )
   }

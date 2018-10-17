@@ -6,9 +6,6 @@ body,
 #render-provider,
 .render-container,
 .render-provider,
-.container {
-  height: 100%;
-}
 
 /* Fixes Safari position:fixed + z-index bug https://www.queness.com/code-snippet/16824/fix-mobile-safari-positionfixed-and-z-index-issue */
 .safari-positioning {
@@ -19,4 +16,16 @@ body,
 .font-display,
 .font-body {
   font-family: 'Fabriga', 'Helvetica Neue', 'Arial', sans-serif;
+}
+
+.c-action-primary {
+  color: #f71963;
+}
+
+.bg-action-primary {
+  background-color: #f71963;
+}
+
+.b--action-primary {
+  border-color: #f71963;
 }
