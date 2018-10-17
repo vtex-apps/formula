@@ -9,6 +9,7 @@ export default class Timer extends Component<TimerProps> {
   public render() {
     const { time } = this.props
 
+    return null
     return (
       <div className="bg-serious-black pa7 white">
         <FormattedMessage id="formula.timeToStart" />

@@ -12,7 +12,7 @@ query Project ($edition: String!, $id: String!) {
       id
       email
       name
-      profile
+      picture
     }
   }
 }

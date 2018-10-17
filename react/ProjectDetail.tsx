@@ -37,7 +37,7 @@ class ProjectDetail extends Component<ProjectsData & RuntimeProps, ProjectState>
           }
 
           return (
-            <div className="pa7 bg-white">
+            <div className="pa7 bg-white mw7 center">
               <PageHeader
                 title={<FormattedMessage id="formula.projectDetails" />}
                 linkLabel={<FormattedMessage id="formula.back" />}

@@ -29,3 +29,7 @@ body,
 .b--action-primary {
   border-color: #f71963;
 }
+
+.vtex-pageHeader__container {
+  background-color: white;
+}

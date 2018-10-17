@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { Mutation } from 'react-apollo'
 import { FormattedMessage } from 'react-intl'
 import { withRuntimeContext } from 'render'
-import { Button } from 'vtex.styleguide'
+import { Button, Input, Textarea } from 'vtex.styleguide'
 
 import DeleteProjectMutation from '../queries/deleteProject.graphql'
 import ProjectsQuery from '../queries/projects.graphql'
@@ -102,27 +102,46 @@ class ProjectForm extends Component<ProjectFormProps & RuntimeProps, ProjectForm
                   isSubmitting,
                 }) => (
                   <form onSubmit={handleSubmit}>
-                    {project.id}
-                    <br />
-                    <label htmlFor="name">Name</label>
-                    <input
-                      type="name"
-                      name="name"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values.name}
-                    />
-                    {errors.name && touched.name && errors.name}
-                    <label htmlFor="description">Description</label>
-                    <input
-                      type="description"
-                      name="description"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values.description}
-                    />
-                    {errors.description && touched.description && errors.description}
-                    {team}
+                    <div className="mb5 gray f8">
+                      {project.id}
+                    </div>
+                    <div className="mb5">
+                      <Input
+                        label="Name"
+                        name="name"
+                        error={errors.name && touched.name}
+                        errorMessage={touched.name && errors.name}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        value={values.name} />
+                    </div>
+                    <div className="mb5">
+                      <Textarea
+                        label="Description"
+                        name="description"
+                        type="textarea"
+                        error={errors.description && touched.description}
+                        errorMessage={touched.description && errors.description}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        value={values.description} />
+                    </div>
+                    <div className="mb5">
+                      <Input
+                        label="Demo URL"
+                        name="demoURL"
+                        error={errors.demoURL && touched.demoURL}
+                        errorMessage={touched.demoURL && errors.demoURL}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        value={values.demoURL} />
+                    </div>
+                    <div className="mb5">
+                      <p>
+                        <FormattedMessage id="formula.team" />
+                      </p>
+                      {team}
+                    </div>
                     {deleteButton}
                     <Button type="submit" disabled={isSubmitting}>
                       <FormattedMessage id="formula.save" />

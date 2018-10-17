@@ -13,13 +13,15 @@ declare module 'vtex.styleguide' {
   const Checkbox: ReactElement
   const Dropdown: ReactElement
   const IconCaretRight: ReactElement
+  const Input: ReactElement
   const Tab: ReactElement
   const Tabs: ReactElement
+  const Textarea: ReactElement
   const Radio: ReactElement
   const Spinner: ReactElement
   const PageHeader: ReactElement
 
-  export { Badge, Button, Checkbox, Dropdown, IconCaretRight, Tab, Tabs, Radio, Spinner, PageHeader }
+  export { Badge, Button, Checkbox, Dropdown, IconCaretRight, Input, Tab, Tabs, Textarea, Radio, Spinner, PageHeader }
 }
 
 declare module 'render' {

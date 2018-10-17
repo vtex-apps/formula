@@ -13,8 +13,13 @@ export default class FormulaTemplate extends Component {
           <title>VTEX Formula</title>
         </Helmet>
         {this.props.children}
-        <footer>
-          VTEX Formula - all rights reserved © <VtexIcon />
+        <footer className="mw7 center gray f8">
+          <div className="flex items-center justify-center pa8">
+            <VtexIcon />
+            <span className="ml3">
+              Formula - all rights reserved ©
+            </span>
+          </div>
         </footer>
       </div>
     )
