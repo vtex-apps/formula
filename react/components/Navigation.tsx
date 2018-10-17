@@ -18,7 +18,7 @@ class Navigation extends Component<NavigationProps & RuntimeProps> {
           <Tab label="Finalists" active={runtime.page === 'formula/projects/finalists'} onClick={() => runtime.navigate({page: 'formula/projects/list', params: {edition}})}/>
         </Tabs>
 
-        <Link page="formula/projects/detail" params={{edition, id: 'new'}} className="absolute" style={{top: '1em', right: '0em', bottom: '1em'}}>
+        <Link page="formula/projects/detail" params={{edition, id: 'new'}} className="absolute" style={{right: '0em', bottom: '1em'}}>
           <Button size="small" className="pb4">
             <FormattedMessage id="formula.newProject" />
           </Button>

@@ -55,7 +55,7 @@ export default class ProjectCard extends Component<ProjectCardProps & Project> {
 
     return (
       <div className="bg-base ma5 ba1 b-dark-silver center mw7 pa7 mt7 br2">
-        <div className="flex justify-between items-center pb6">
+        <div className="flex justify-between pb6">
           <div className="f4 fw5 pb3">{name}</div>
           <Link page="formula/projects/detail" params={{edition, id}}>
             <div className="c-emphasis no-underline" style={{textDecoration: 'none' }}>
@@ -63,7 +63,7 @@ export default class ProjectCard extends Component<ProjectCardProps & Project> {
             </div>
           </Link>
         </div>
-        <div className="f5 bb b--muted-5 mb7 pb7 fw3 lh-body">{description}</div>
+        <div className="f5 bb b--muted-5 mb7 pb7 fw3 lh-copy">{description}</div>
         <section>
           <div className="f4 fw5"><FormattedMessage id="formula.team" /></div>
           <ul className="list pl0 mb7">
