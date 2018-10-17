@@ -63,7 +63,7 @@ export default class ProjectCard extends Component<ProjectCardProps & Project> {
             </div>
           </Link>
         </div>
-        <div className="f5 bb b--muted-5 mb7 pb7 fw3">{description}</div>
+        <div className="f5 bb b--muted-5 mb7 pb7 fw3 lh-body">{description}</div>
         <section>
           <div className="f4 fw5"><FormattedMessage id="formula.team" /></div>
           <ul className="list pl0 mb7">
