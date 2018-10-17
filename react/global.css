@@ -33,3 +33,12 @@ body,
 .vtex-pageHeader__container {
   background-color: white;
 }
+
+.hover-bg-action-primary:hover {
+  background-color: #dd1659;
+}
+
+.hover-b--action-primary:hover {
+  background-color: #dd1659;
+}
+

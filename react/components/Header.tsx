@@ -25,8 +25,10 @@ export default class Header extends Component<HeaderProps> {
     )
 
     const logout = onLogout && (
-      <Button variation="secondary" onClick={onLogout}>
-        <LogoutIcon /><FormattedMessage id="formula.logout"/>
+      <Button variation="tertiary" onClick={onLogout}>
+        <span className="white">
+         <FormattedMessage id="formula.logout"/>
+        </span>
       </Button>
     )
 
