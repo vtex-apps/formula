@@ -15,4 +15,9 @@ query Projects ($edition: String!) {
       picture
     }
   }
+  votes (edition: $edition) {
+    projectID
+    execution
+    relevance
+  }
 }

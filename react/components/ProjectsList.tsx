@@ -13,12 +13,7 @@ interface ProjectsListData {
 
 export default class ProjectsList extends Component<ProjectsListData> {
   public render () {
-    const { state } = this.props
-    if (state !== 'Results') {
-      return <p>Ainda não pode ver os resultados</p>
-    }
-
-    const { edition } = this.props
+    const { edition, state } = this.props
     return (
       <Query query={ProjectsQuery} variables={{ edition }}>
         {({ loading, error, data }) => {
@@ -27,9 +22,11 @@ export default class ProjectsList extends Component<ProjectsListData> {
           }
 
           const hasTeam = data.projects && !!data.projects.find((p: Project) => p.team && p.team.find(({ email }) => email === data.profile.email))
-          return data.projects.map((p: Project) =>
-            <ProjectCard key={p.id} {...p} email={data.profile.email} edition={edition} hasTeam={hasTeam} />
-          )
+          return data.projects.map((p: Project) => {
+            const vote = data.votes.find(current => current.projectID === p.id) || {execution: 0, relevance: 0}
+
+            return <ProjectCard vote={vote} state={state} key={p.id} {...p} email={data.profile.email} edition={edition} hasTeam={hasTeam} />
+          })
         }}
       </Query>
     )

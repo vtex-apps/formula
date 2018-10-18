@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { Mutation } from 'react-apollo'
 import { FormattedMessage } from 'react-intl'
 import { Link } from 'render'
@@ -7,10 +7,19 @@ import { Button } from 'vtex.styleguide'
 import JoinProjectMutation from '../queries/joinProject.graphql'
 import LeaveProjectMutation from '../queries/leaveProject.graphql'
 import ProjectsQuery from '../queries/projects.graphql'
+import voteMutation from '../queries/vote.graphql'
 
 interface ProjectCardProps {
   email: string
   hasTeam: boolean
+}
+
+function getVoteClass(value, current) {
+  const activeClasses = 'br-pill bg-emphasis c-on-base--inverted flex items-center justify-center fw3 f4 mr6 pointer'
+  const inactiveClasses = 'br-pill bg-base ba b--muted-3 c-muted-3 flex items-center justify-center fw3 f4 mr6 pointer'
+
+  if (value >= current) { return activeClasses }
+  return inactiveClasses
 }
 
 export default class ProjectCard extends Component<ProjectCardProps & Project> {
@@ -19,7 +28,7 @@ export default class ProjectCard extends Component<ProjectCardProps & Project> {
   }
 
   public render() {
-    const { id, edition, name, description, owner, team, email, hasTeam } = this.props
+    const { id, edition, name, description, owner, team, email, hasTeam, vote, state } = this.props
 
     const refetchProjectsQuery = {
       query: ProjectsQuery,
@@ -96,11 +105,15 @@ export default class ProjectCard extends Component<ProjectCardProps & Project> {
             </div>
           </div>
           <div className="flex mt7 w-100 bb b--muted-5 pb7">
-            <div className="br-pill bg-emphasis c-on-base--inverted flex items-center justify-center fw3 f4 mr6 pointer" style={{ width: '48px', height: '48px' }}>1</div>
-            <div className="br-pill bg-emphasis c-on-base--inverted flex items-center justify-center fw3 f4 mr6 pointer" style={{ width: '48px', height: '48px' }}>2</div>
-            <div className="br-pill bg-emphasis c-on-base--inverted flex items-center justify-center fw3 f4 mr6 pointer" style={{ width: '48px', height: '48px' }}>3</div>
-            <div className="br-pill bg-base ba b--muted-3 c-muted-3 flex items-center justify-center fw3 f4 mr6 pointer" style={{ width: '48px', height: '48px' }}>4</div>
-            <div className="br-pill bg-base ba b--muted-3 c-muted-3 flex items-center justify-center fw3 f4 mr6 pointer" style={{ width: '48px', height: '48px' }}>5</div>
+            <Mutation mutation={voteMutation} refetchQueries={[refetchProjectsQuery]}>
+              {(updateVote) => (
+              <Fragment>
+                {[1,2,3,4,5].map(idx => (
+                  <div key={`relevance-${idx}`} className={getVoteClass(vote.relevance,idx)} style={{ width: '48px', height: '48px' }} onClick={() => updateVote({variables: {edition, id, execution: vote.execution, relevance: idx}})}>{idx}</div>
+                ))}
+              </Fragment>
+              )}
+            </Mutation>
           </div>
           <div className="pt6">
             <div className="c-muted-2 f5">
@@ -111,11 +124,15 @@ export default class ProjectCard extends Component<ProjectCardProps & Project> {
             </div>
           </div>
           <div className="flex mt7">
-            <div className="br-pill bg-emphasis c-on-base--inverted flex items-center justify-center fw3 f4 mr6 pointer" style={{ width: '48px', height: '48px' }}>1</div>
-            <div className="br-pill bg-emphasis c-on-base--inverted flex items-center justify-center fw3 f4 mr6 pointer" style={{ width: '48px', height: '48px' }}>2</div>
-            <div className="br-pill bg-base ba b--muted-3 c-muted-3 flex items-center justify-center fw3 f4 mr6 pointer" style={{ width: '48px', height: '48px' }}>3</div>
-            <div className="br-pill bg-base ba b--muted-3 c-muted-3 flex items-center justify-center fw3 f4 mr6 pointer" style={{ width: '48px', height: '48px' }}>4</div>
-            <div className="br-pill bg-base ba b--muted-3 c-muted-3 flex items-center justify-center fw3 f4 mr6 pointer" style={{ width: '48px', height: '48px' }}>5</div>
+            <Mutation mutation={voteMutation} refetchQueries={[refetchProjectsQuery]}>
+              {(updateVote) => (
+              <Fragment>
+                {[1,2,3,4,5].map(idx => (
+                  <div key={`relevance-${idx}`} className={getVoteClass(vote.execution,idx)} style={{ width: '48px', height: '48px' }} onClick={() => updateVote({variables: {edition, id, relevance: vote.relevance, execution: idx}})}>{idx}</div>
+                ))}
+              </Fragment>
+              )}
+            </Mutation>
           </div>
         </div>
       </div>
