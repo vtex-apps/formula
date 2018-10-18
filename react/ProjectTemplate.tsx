@@ -8,7 +8,9 @@ import Loading from './components/Loading'
 import Timer from './components/Timer'
 
 interface ProjectsData {
-  data: any
+  params: {
+    edition: string
+  }
 }
 
 export default class ProjectTemplate extends Component<{} & ProjectsData> {
@@ -17,6 +19,7 @@ export default class ProjectTemplate extends Component<{} & ProjectsData> {
   }
 
   public render() {
+    const { params: { edition } } = this.props
     return (
       <Query query={ProfileQuery} ssr={false}>
         {({ loading, error, data }) => {
@@ -40,8 +43,8 @@ export default class ProjectTemplate extends Component<{} & ProjectsData> {
 
           return (
             <div>
-              <Header name={firstName} onLogout={this.logout}/>
-              {!loading && !errorMsg && <Timer time="24:00:00"/>}
+              <Header name={firstName} onLogout={this.logout} />
+              {!loading && !errorMsg && <Timer edition={edition}/>}
               {loading
                 ? <Loading />
                 : errorMsg
