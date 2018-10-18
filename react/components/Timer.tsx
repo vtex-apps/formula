@@ -32,6 +32,9 @@ export default class Timer extends Component<TimerProps> {
                       />
                   }
                 </div>
+                <div className="w-100 bg-marine h2 relative mb7 br2" style={{height: '0.25rem';}}>
+                  <div className="bg-rebel-pink h2 br2" style={{width: '20px', height: '0.25rem';}}></div>  
+                </div>
               </div>
             </div>
           )
