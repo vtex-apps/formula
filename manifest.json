@@ -19,7 +19,6 @@
     "url": "git://github.com/vtex-apps/formula.git"
   },
   "scripts": {
-    "prereleasy": "bash lint.sh",
     "postreleasy": "vtex publish --verbose"
   }
 }
