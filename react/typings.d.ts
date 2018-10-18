@@ -55,3 +55,10 @@ interface ProfileData {
 interface RuntimeProps {
   runtime: any
 }
+
+enum States {
+  Registration = 'Registration',
+  Running = 'Running',
+  Voting = 'Voting',
+  Results = 'Results'
+}

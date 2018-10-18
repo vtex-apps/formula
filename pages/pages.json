@@ -12,6 +12,9 @@
     "formula/projects/list": {
       "path": "/formula/:edition"
     },
+    "formula/projects/finalists": {
+      "path": "/formula/:edition/finalists"
+    },
     "formula/projects/detail": {
       "path": "/formula/:edition/:id"
     }
@@ -27,7 +30,10 @@
       "component": "ProjectTemplate"
     },
     "formula/projects/list": {
-      "component": "ProjectList"
+      "component": "FormulaEdition"
+    },
+    "formula/projects/finalists": {
+      "component": "FormulaEdition"
     },
     "formula/projects/detail": {
       "component": "ProjectDetail"

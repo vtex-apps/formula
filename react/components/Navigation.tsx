@@ -5,17 +5,19 @@ import { Button, Tab, Tabs } from 'vtex.styleguide'
 
 interface NavigationProps {
   edition: string
+  currentPage: string
+  setPage: (url: string) => void
 }
 
-class Navigation extends Component<NavigationProps & RuntimeProps> {
+export default class Navigation extends Component<NavigationProps> {
   public render() {
-    const { edition, runtime } = this.props
+    const { edition, currentPage, setPage } = this.props
 
     return (
       <div className="relative mw7 center mt7">
         <Tabs>
-          <Tab label="Projects" active={runtime.page === 'formula/projects/list'} onClick={() => runtime.navigate({page: 'formula/projects/list', params: {edition}})} />
-          <Tab label="Finalists" active={runtime.page === 'formula/projects/finalists'} onClick={() => runtime.navigate({page: 'formula/projects/list', params: {edition}})}/>
+          <Tab label="Projects" active={currentPage === 'formula/projects/list'} onClick={() => setPage('formula/projects/list')} />
+          <Tab label="Finalists" active={currentPage === 'formula/projects/finalists'} onClick={() => setPage('formula/projects/finalists')} />
         </Tabs>
 
         <Link page="formula/projects/detail" params={{edition, id: 'new'}} className="absolute" style={{right: '0em', bottom: '1em'}}>
@@ -27,5 +29,3 @@ class Navigation extends Component<NavigationProps & RuntimeProps> {
     )
   }
 }
-
-export default withRuntimeContext(Navigation)
