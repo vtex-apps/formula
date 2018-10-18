@@ -7,3 +7,5 @@ react/node_modules
 react/.DS_Store
 react/vendor/.DS_Store
 react/yarn-error.log
+react/package-lock.json
+package-lock.json
