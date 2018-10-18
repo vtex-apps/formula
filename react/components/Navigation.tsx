@@ -20,7 +20,7 @@ export default class Navigation extends Component<NavigationProps> {
           <Tab label="Finalists" active={currentPage === 'formula/projects/finalists'} onClick={() => setPage('formula/projects/finalists')} />
         </Tabs>
 
-        {state === 'Registration' || state === 'Running' ?
+        {state === 'REGISTRATION' || state === 'RUNNING' ?
         <Link page="formula/projects/detail" params={{edition, id: 'new'}} className="absolute" style={{right: '0em', bottom: '1em'}}>
           <Button size="small" className="pb4">
             <FormattedMessage id="formula.newProject" />

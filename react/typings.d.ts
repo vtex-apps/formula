@@ -57,8 +57,8 @@ interface RuntimeProps {
 }
 
 enum States {
-  Registration = 'Registration',
-  Running = 'Running',
-  Voting = 'Voting',
-  Results = 'Results'
+  Registration = 'REGISTRATION',
+  Running = 'RUNNING',
+  Voting = 'VOTING',
+  Results = 'RESULTS'
 }

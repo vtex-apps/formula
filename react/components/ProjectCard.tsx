@@ -18,7 +18,7 @@ function getVoteClass(value, current, state) {
   const activeClasses = 'br-pill bg-emphasis c-on-base--inverted flex items-center justify-center fw3 f4 mr6'
   const inactiveClasses = 'br-pill bg-base ba b--muted-3 c-muted-3 flex items-center justify-center fw3 f4 mr6'
   let classes = value >= current ? activeClasses : inactiveClasses
-  if (state === 'Voting') {
+  if (state === 'VOTING') {
     classes += ' pointer'
   }
   return classes
@@ -71,7 +71,7 @@ export default class ProjectCard extends Component<ProjectCardProps & Project> {
           <div className="w-100">
             <div className="flex justify-between items-center pb6 w-100">
               <div className="f4 fw5 pb3">{name}</div>
-              {state === 'Registration' || state === 'Running' ?
+              {state === 'REGISTRATION' || state === 'RUNNING' ?
               <div className="h1">
                 <Link page="formula/projects/detail" params={{edition, id}}>
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -87,15 +87,15 @@ export default class ProjectCard extends Component<ProjectCardProps & Project> {
             <div className="f5 bb b--muted-5 mb7 pb7 fw3 lh-copy">{description}</div>
           </div>
         </div>
-        {state !== 'Voting' ? <section>
+        {state !== 'VOTING' ? <section>
           <div className="f4 fw5"><FormattedMessage id="formula.team" /></div>
           <ul className="list pl0 mb7 lh-copy">
             {team && team.map((u) => <li key={u.id}>{u.name} - {u.email}</li>)}
           </ul>
         </section> : null}
-        {state === 'Registration' || state === 'Running' ? !isOwner && joinOrLeave : null}
+        {state === 'REGISTRATION' || state === 'RUNNING' ? !isOwner && joinOrLeave : null}
 
-        {state === 'Voting' || state === 'Results' ?
+        {state === 'VOTING' || state === 'RESULTS' ?
         <div>
           <div className="flex justify-between fw7">
             <div>Evaluation</div>
@@ -114,7 +114,7 @@ export default class ProjectCard extends Component<ProjectCardProps & Project> {
               {(updateVote) => (
               <Fragment>
                 {[1,2,3,4,5].map(idx => (
-                  <div key={`relevance-${idx}`} className={getVoteClass(vote.relevance,idx,state)} style={{ width: '48px', height: '48px' }} onClick={() => state === 'Voting' ? updateVote({variables: {edition, id, execution: vote.execution, relevance: idx}}) : null}>{idx}</div>
+                  <div key={`relevance-${idx}`} className={getVoteClass(vote.relevance,idx,state)} style={{ width: '48px', height: '48px' }} onClick={() => state === 'VOTING' ? updateVote({variables: {edition, id, execution: vote.execution, relevance: idx}}) : null}>{idx}</div>
                 ))}
               </Fragment>
               )}
@@ -133,7 +133,7 @@ export default class ProjectCard extends Component<ProjectCardProps & Project> {
               {(updateVote) => (
               <Fragment>
                 {[1,2,3,4,5].map(idx => (
-                  <div key={`relevance-${idx}`} className={getVoteClass(vote.execution,idx,state)} style={{ width: '48px', height: '48px' }} onClick={() => state === 'Voting' ? updateVote({variables: {edition, id, relevance: vote.relevance, execution: idx}}) : null}>{idx}</div>
+                  <div key={`relevance-${idx}`} className={getVoteClass(vote.execution,idx,state)} style={{ width: '48px', height: '48px' }} onClick={() => state === 'VOTING' ? updateVote({variables: {edition, id, relevance: vote.relevance, execution: idx}}) : null}>{idx}</div>
                 ))}
               </Fragment>
               )}

@@ -16,7 +16,7 @@ export default class FinalistsList extends Component<ProjectsListData> {
   public render () {
     const { edition, state } = this.props
 
-    if (state !== 'Results') {
+    if (state !== 'RESULTS') {
       return <BlockedFinalists />
     }
 
