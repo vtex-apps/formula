@@ -18,22 +18,32 @@ export default class Timer extends Component<TimerProps> {
       <Query query={InfoQuery} ssr={false} variables={{ edition }}>
         {({ loading, error, data }) => {
           console.log(data)
+          const remaining = data && data.info && data.info.timeRemainingSeconds
+          const status = data && data.info && data.info.status
+          const total = data && data.info && data.info.timeTotalSeconds
+
+          const barWidth = status === 'REGISTRATION'
+            ? 0
+            : status !== 'RUNNING'
+              ? '100%'
+              : `${Math.round(((total - remaining) / total) * 100)}%`
+
           return (
             <div className="bg-serious-black white">
               <div className="center mw7 pv7">
                 <div className="f5 fw3">
-                  <FormattedMessage id="formula.timeToStart" />         
+                  <FormattedMessage id={`formula.status.${status.toLowerCase()}`} />
                 </div>
                 <div className="fw3 pb5" style={{fontSize : '120px'}}>
-                  {data && data.info && data.info.timeRemainingSeconds &&
+                  {remaining &&
                     <Countdown
-                      date={nowMillis + data.info.timeRemainingSeconds * 1000}
+                      date={nowMillis + remaining * 1000}
                       daysInHours={true}
                       />
-                  }s
+                  }
                 </div>
-                <div className="w-100 bg-marine h2 relative mb7 br2" style={{height: '0.25rem';}}>
-                  <div className="bg-rebel-pink h2 br2" style={{width: '20px', height: '0.25rem';}}></div>  
+                <div className="w-100 bg-marine h2 relative mb7 br2" style={{height: '0.25rem'}}>
+                  <div className="bg-rebel-pink h2 br2" style={{width: barWidth, height: '0.25rem'}}></div>
                 </div>
               </div>
             </div>
