@@ -12,6 +12,7 @@ import UpdateProjectMutation from '../queries/updateProject.graphql'
 interface ProjectFormProps {
   initialProject: Project
   edition: string
+  email: string
 }
 
 interface ProjectFormState {
@@ -28,7 +29,7 @@ class ProjectForm extends Component<ProjectFormProps & RuntimeProps, ProjectForm
   }
 
   public render() {
-    const { edition } = this.props
+    const { edition, email } = this.props
     const { project } = this.state
 
     const team = project && project.id && project.team && (
@@ -36,6 +37,8 @@ class ProjectForm extends Component<ProjectFormProps & RuntimeProps, ProjectForm
         {project.team.map((u) => <li key={u.id}>{u.name} - {u.email}</li>)}
       </ul>
     )
+
+    const isOwner = project.owner === email
 
     const refetchProjectsQuery = {
       query: ProjectsQuery,
@@ -46,7 +49,7 @@ class ProjectForm extends Component<ProjectFormProps & RuntimeProps, ProjectForm
 
     const handleDeleteSuccess = () => this.props.runtime.navigate({page: 'formula/projects/list', params: {edition}})
 
-    const deleteButton = project.id && (
+    const deleteButton = isOwner && project.id && (
       <Mutation mutation={DeleteProjectMutation} refetchQueries={[refetchProjectsQuery]}>
         {(deleteProject) => {
           return (
