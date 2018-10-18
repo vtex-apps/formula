@@ -18,7 +18,7 @@ export default class Header extends Component<HeaderProps> {
     )
 
     const hello = name && (
-      <div>
+      <div className="dn db-ns">
         <FormattedMessage id="formula.hello"/> {name}
       </div>
     )
