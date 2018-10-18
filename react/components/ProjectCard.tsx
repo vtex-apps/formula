@@ -71,7 +71,7 @@ export default class ProjectCard extends Component<ProjectCardProps & Project> {
                 </Link>
               </div>
             </div>
-            <div className="f5 bb b-muted-5 mb7 pb7 fw3 lh-copy">{description}</div>
+            <div className="f5 bb b--muted-5 mb7 pb7 fw3 lh-copy">{description}</div>
           </div>
         </div>
         <section>
