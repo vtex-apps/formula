@@ -39,18 +39,22 @@ export default class Timer extends Component<TimerProps> {
               ? <FormattedMessage id="formula.status.results.details"/>
               : null
 
+          const countdown = countdownRunning &&
+            <Countdown
+              date={nowMillis + remaining * 1000}
+              daysInHours={true} />
+
           return (
             <div className="bg-serious-black white">
-              <div className="center mw7 pv7">
+              <div className="center mw7 pv7 ph5">
                 <div className="f5 fw3">
                   <FormattedMessage id={`formula.status.${status.toLowerCase()}`} />
                 </div>
-                <div className="fw3 pb5" style={{fontSize : '120px'}}>
-                  {countdownRunning &&
-                    <Countdown
-                      date={nowMillis + remaining * 1000}
-                      daysInHours={true} /> || afterContent
-                  }
+                <div className="fw3 pb5 dn-ns db" style={{fontSize : '5em'}}>
+                  { countdown || afterContent }
+                </div>
+                <div className="fw3 pb5 dn db-ns" style={{fontSize : '10em'}}>
+                  { countdown || afterContent }
                 </div>
                 <div className="w-100 bg-marine h2 relative mb7 br2" style={{height: '0.25rem'}}>
                   <div className="bg-rebel-pink h2 br2" style={{width: barWidth, height: '0.25rem'}}></div>
