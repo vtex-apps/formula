@@ -1,7 +1,7 @@
 {
   "name": "formula",
   "vendor": "vtex",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "title": "VTEX Formula",
   "description": "The VTEX Formula Hackathon Manager",
   "credentialType": "absolute",
