@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { Query } from 'react-apollo'
-import { Spinner } from 'vtex.styleguide'
 
 import ProjectsQuery from './queries/projects.graphql'
 
+import Loading from './components/Loading'
 import Navigation from './components/Navigation'
 import ProjectCard from './components/ProjectCard'
 
@@ -23,14 +23,10 @@ export default class ProjectList extends Component<{} & ProjectsData> {
     return (
       <Query query={ProjectsQuery} variables={{edition}}>
         {({ loading, error, data }) => {
-          if (loading) {
-            return <Spinner />
-          }
-
           return (
             <div>
               <Navigation edition={edition} />
-              {data.projects.map((p: Project) => <ProjectCard key={p.id} {...p} email={data.profile.email} edition={edition} />)}
+              {loading ? <Loading /> : data.projects.map((p: Project) => <ProjectCard key={p.id} {...p} email={data.profile.email} edition={edition} />)}
             </div>
           )
         }}

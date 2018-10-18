@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { FormattedMessage } from 'react-intl'
 import { Button } from 'vtex.styleguide'
 
-import LogoutIcon from '../icons/LogoutIcon'
 import VtexIcon from '../icons/VtexIcon'
 
 interface HeaderProps {

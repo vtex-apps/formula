@@ -11,6 +11,7 @@ export default class FormulaTemplate extends Component {
       <div className="container bg-muted-5">
         <Helmet>
           <title>VTEX Formula</title>
+          <link rel="shortcut icon" href="https://io.vtex.com.br/favico/1.3.0/favico.ico"></link>
         </Helmet>
         {this.props.children}
         <footer className="mw7 center gray f8">

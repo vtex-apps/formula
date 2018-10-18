@@ -1,8 +1,7 @@
 {
   "pages": {
     "formula": {
-      "path": "/formula",
-      "cname": "formula.vtex.io"
+      "path": "/formula"
     },
     "formula/intro": {
       "path": "/formula"

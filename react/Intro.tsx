@@ -17,11 +17,13 @@ class IntroPage extends Component<RuntimeProps> {
     return (
       <div>
         <Header />
-        <Link page="formula/projects/list" params={{edition: "2018.10"}}>
-          <Button variation="primary">
-            <FormattedMessage id="formula.signup"/>
-          </Button>
-        </Link>
+        <div className="pa8 flex center justify-center">
+          <Link page="formula/projects/list" params={{edition: "2018.10"}}>
+            <Button variation="primary">
+              <FormattedMessage id="formula.signup"/>
+            </Button>
+          </Link>
+        </div>
       </div>
     )
   }
