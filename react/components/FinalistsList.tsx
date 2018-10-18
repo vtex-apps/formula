@@ -3,6 +3,7 @@ import { Query } from 'react-apollo'
 
 import ProjectsQuery from '../queries/projects.graphql'
 
+import BlockedFinalists from './BlockedFinalists'
 import Loading from './Loading'
 import ProjectCard from './ProjectCard'
 
@@ -13,7 +14,12 @@ interface ProjectsListData {
 
 export default class FinalistsList extends Component<ProjectsListData> {
   public render () {
-    const { edition } = this.props
+    const { edition, state } = this.props
+
+    if (state !== 'Results') {
+      return <BlockedFinalists />
+    }
+
     return (
       <Query query={ProjectsQuery} variables={{ edition }}>
         {({ loading, error, data }) => {
