@@ -17,7 +17,7 @@ export default class Timer extends Component<TimerProps> {
     const { edition } = this.props
     return (
       <Query query={InfoQuery} ssr={false} variables={{ edition }}>
-        {({ loading, error, data }) => {
+        {({ loading, error, data = {} }) => {
           if (loading || !data.info) {
             return <Loading />
           }
