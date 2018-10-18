@@ -4,6 +4,7 @@ import Countdown from 'react-countdown-now'
 import { FormattedMessage } from 'react-intl'
 
 import InfoQuery from '../queries/info.graphql'
+import Loading from './Loading'
 
 interface TimerProps {
   edition: string
@@ -17,16 +18,26 @@ export default class Timer extends Component<TimerProps> {
     return (
       <Query query={InfoQuery} ssr={false} variables={{ edition }}>
         {({ loading, error, data }) => {
-          console.log(data)
+          if (loading || !data.info) {
+            return <Loading />
+          }
+
           const remaining = data && data.info && data.info.timeRemainingSeconds
           const status = data && data.info && data.info.status
           const total = data && data.info && data.info.timeTotalSeconds
+          const countdownRunning = status === 'REGISTRATION' || status === 'RUNNING'
 
           const barWidth = status === 'REGISTRATION'
             ? 0
             : status !== 'RUNNING'
               ? '100%'
               : `${Math.round(((total - remaining) / total) * 100)}%`
+
+          const afterContent = status === 'VOTING'
+            ? <FormattedMessage id="formula.status.voting.details"/>
+            : status === 'RESULTS'
+              ? <FormattedMessage id="formula.status.results.details"/>
+              : null
 
           return (
             <div className="bg-serious-black white">
@@ -35,11 +46,10 @@ export default class Timer extends Component<TimerProps> {
                   <FormattedMessage id={`formula.status.${status.toLowerCase()}`} />
                 </div>
                 <div className="fw3 pb5" style={{fontSize : '120px'}}>
-                  {remaining &&
+                  {countdownRunning &&
                     <Countdown
                       date={nowMillis + remaining * 1000}
-                      daysInHours={true}
-                      />
+                      daysInHours={true} /> || afterContent
                   }
                 </div>
                 <div className="w-100 bg-marine h2 relative mb7 br2" style={{height: '0.25rem'}}>
