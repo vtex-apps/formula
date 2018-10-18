@@ -7,16 +7,16 @@
       "path": "/formula"
     },
     "formula/projects": {
-      "path": "/formula/*path"
+      "path": "/formula/:edition"
     },
     "formula/projects/list": {
-      "path": "/formula/:edition"
+      "path": "/formula/:edition/projects"
     },
     "formula/projects/finalists": {
       "path": "/formula/:edition/finalists"
     },
     "formula/projects/detail": {
-      "path": "/formula/:edition/:id"
+      "path": "/formula/:edition/projects/:id"
     }
   },
   "extensions": {

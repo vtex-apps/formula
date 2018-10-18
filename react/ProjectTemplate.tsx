@@ -27,7 +27,7 @@ export default class ProjectTemplate extends Component<{} & ProjectsData> {
             const authError = graphQLErrors && graphQLErrors.length > 0 && graphQLErrors.find((e: any) => e.extensions.code === 'UNAUTHENTICATED')
             const forbiddenError = graphQLErrors && graphQLErrors.length > 0 && graphQLErrors.find((e: any) => e.extensions.code === 'FORBIDDEN')
             if (authError) {
-              window.location.href = '/_v/auth-server/v1/login?ReturnUrl=' + encodeURIComponent('/formula/2018.10')
+              window.location.href = '/_v/auth-server/v1/login?ReturnUrl=' + encodeURIComponent('/formula/2018.10/projects')
               errorMsg = <div>Redirecting to login...</div>
             } else if (forbiddenError) {
               errorMsg = <div>Oops :( Formula is a VTEX-only event. Sorry!</div>
