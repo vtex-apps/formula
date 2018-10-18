@@ -61,15 +61,15 @@ export default class ProjectCard extends Component<ProjectCardProps & Project> {
             <div className="flex justify-between pb6">
               <div className="f4 fw5 pb3">{name}</div>
             </div>
-            <div className="f5 bb b--muted-5 mb7 pb7 fw3 lh-copy">{description}</div>
+            <div className="f5 bb b-Muted-5 mb7 pb7 fw3 lh-copy">{description}</div>
           </div>
           <div className="h1">
             <Link page="formula/projects/detail" params={{edition, id}}>
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect width="16" height="16" fill="white"/>
-              <path d="M2 14.5H14" stroke="#CACBCC" stroke-width="1.4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M10.1429 1.5L12.7143 4.1L5.42857 11.4667L2 12.3333L2.85714 8.86667L10.1429 1.5Z" stroke="#CACBCC" stroke-width="1.4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M8.42859 3.2334L11 5.8334" stroke="#CACBCC" stroke-width="1.4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M2 14.5H14" stroke="#CACBCC" strokeWidth="1.4" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M10.1429 1.5L12.7143 4.1L5.42857 11.4667L2 12.3333L2.85714 8.86667L10.1429 1.5Z" stroke="#CACBCC" strokeWidth="1.4" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M8.42859 3.2334L11 5.8334" stroke="#CACBCC" strokeWidth="1.4" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </Link>
           </div>

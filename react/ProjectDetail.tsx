@@ -44,7 +44,7 @@ class ProjectDetail extends Component<ProjectsData & RuntimeProps, ProjectState>
                       runtime.navigate({page: 'formula/projects/list', params: {edition}})
                     }}
                   />
-                  <ProjectForm initialProject={data.project} edition={edition} email={data.profile.email}/>
+                  <ProjectForm initialProject={data.project} edition={edition} email={data.profile && data.profile.email}/>
                 </Fragment>
               )}
             </div>
