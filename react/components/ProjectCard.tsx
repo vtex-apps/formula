@@ -10,6 +10,7 @@ import ProjectsQuery from '../queries/projects.graphql'
 
 interface ProjectCardProps {
   email: string
+  hasTeam: boolean
 }
 
 export default class ProjectCard extends Component<ProjectCardProps & Project> {
@@ -18,7 +19,7 @@ export default class ProjectCard extends Component<ProjectCardProps & Project> {
   }
 
   public render() {
-    const { id, edition, name, description, owner, team, email } = this.props
+    const { id, edition, name, description, owner, team, email, hasTeam } = this.props
 
     const refetchProjectsQuery = {
       query: ProjectsQuery,
@@ -41,7 +42,7 @@ export default class ProjectCard extends Component<ProjectCardProps & Project> {
           )
         }}
       </Mutation>
-    ) : (
+    ) : !hasTeam ? (
       <Mutation mutation={JoinProjectMutation} refetchQueries={[refetchProjectsQuery]}>
         {(joinProject) => {
           return (
@@ -51,7 +52,7 @@ export default class ProjectCard extends Component<ProjectCardProps & Project> {
           )
         }}
       </Mutation>
-    )
+    ) : null
 
     return (
       <div className="bg-base ma5 ba1 b-dark-silver center mw7 pa7 mt7 br2">

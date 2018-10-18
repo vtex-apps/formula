@@ -23,10 +23,11 @@ export default class ProjectList extends Component<{} & ProjectsData> {
     return (
       <Query query={ProjectsQuery} variables={{edition}}>
         {({ loading, error, data }) => {
+          const hasTeam = !loading && data.projects && !!data.projects.find((p: Project) => p.team && p.team.find(({email}) => email === data.profile.email))
           return (
             <div>
               <Navigation edition={edition} />
-              {loading ? <Loading /> : data.projects.map((p: Project) => <ProjectCard key={p.id} {...p} email={data.profile.email} edition={edition} />)}
+              {loading ? <Loading /> : data.projects.map((p: Project) => <ProjectCard key={p.id} {...p} email={data.profile.email} edition={edition} hasTeam={hasTeam} />)}
             </div>
           )
         }}
