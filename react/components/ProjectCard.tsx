@@ -81,6 +81,43 @@ export default class ProjectCard extends Component<ProjectCardProps & Project> {
           </ul>
         </section>
         {!isOwner && joinOrLeave}
+
+        <div>
+          <div className="flex justify-between fw7">
+            <div>Evaluation</div>
+            <div>Total Score: 5</div>
+          </div>
+          <div className="pt6">
+            <div className="c-muted-2 f5">
+              Criteria #1
+            </div>
+            <div className="f6 pt3">
+              Project impact on VTEX
+            </div>
+          </div>
+          <div className="flex mt7 w-100 bb b--muted-5 pb7">
+            <div className="br-pill bg-emphasis c-on-base--inverted flex items-center justify-center fw3 f4 mr6 pointer" style={{ width: '48px', height: '48px' }}>1</div>
+            <div className="br-pill bg-emphasis c-on-base--inverted flex items-center justify-center fw3 f4 mr6 pointer" style={{ width: '48px', height: '48px' }}>2</div>
+            <div className="br-pill bg-emphasis c-on-base--inverted flex items-center justify-center fw3 f4 mr6 pointer" style={{ width: '48px', height: '48px' }}>3</div>
+            <div className="br-pill bg-base ba b--muted-3 c-muted-3 flex items-center justify-center fw3 f4 mr6 pointer" style={{ width: '48px', height: '48px' }}>4</div>
+            <div className="br-pill bg-base ba b--muted-3 c-muted-3 flex items-center justify-center fw3 f4 mr6 pointer" style={{ width: '48px', height: '48px' }}>5</div>
+          </div>
+          <div className="pt6">
+            <div className="c-muted-2 f5">
+              Criteria #2
+            </div>
+            <div className="f6 pt3">
+              Project quality level
+            </div>
+          </div>
+          <div className="flex mt7">
+            <div className="br-pill bg-emphasis c-on-base--inverted flex items-center justify-center fw3 f4 mr6 pointer" style={{ width: '48px', height: '48px' }}>1</div>
+            <div className="br-pill bg-emphasis c-on-base--inverted flex items-center justify-center fw3 f4 mr6 pointer" style={{ width: '48px', height: '48px' }}>2</div>
+            <div className="br-pill bg-base ba b--muted-3 c-muted-3 flex items-center justify-center fw3 f4 mr6 pointer" style={{ width: '48px', height: '48px' }}>3</div>
+            <div className="br-pill bg-base ba b--muted-3 c-muted-3 flex items-center justify-center fw3 f4 mr6 pointer" style={{ width: '48px', height: '48px' }}>4</div>
+            <div className="br-pill bg-base ba b--muted-3 c-muted-3 flex items-center justify-center fw3 f4 mr6 pointer" style={{ width: '48px', height: '48px' }}>5</div>
+          </div>
+        </div>
       </div>
     )
   }
