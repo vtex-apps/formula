@@ -24,13 +24,13 @@ export default class Timer extends Component<TimerProps> {
                 <div className="f5 fw3">
                   <FormattedMessage id="formula.timeToStart" />         
                 </div>
-                <div className="fw3 pb5" style={{fontSize : '140px'}}>
+                <div className="fw3 pb5" style={{fontSize : '120px'}}>
                   {data && data.info && data.info.timeRemainingSeconds &&
                     <Countdown
                       date={nowMillis + data.info.timeRemainingSeconds * 1000}
                       daysInHours={true}
                       />
-                  }
+                  }s
                 </div>
                 <div className="w-100 bg-marine h2 relative mb7 br2" style={{height: '0.25rem';}}>
                   <div className="bg-rebel-pink h2 br2" style={{width: '20px', height: '0.25rem';}}></div>  
