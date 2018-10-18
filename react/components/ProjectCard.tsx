@@ -56,27 +56,27 @@ export default class ProjectCard extends Component<ProjectCardProps & Project> {
 
     return (
       <div className="bg-base ma5 ba1 b-dark-silver center mw7 pa7 mt7 br2">
-        <div className="inline-flex">
-          <div className="pr5 mr5">
-            <div className="flex justify-between pb6">
+        <div className="inline-flex w-100">
+          <div className="w-100">
+            <div className="flex justify-between items-center pb6 w-100">
               <div className="f4 fw5 pb3">{name}</div>
+              <div className="h1">
+                <Link page="formula/projects/detail" params={{edition, id}}>
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="16" height="16" fill="white"/>
+                  <path d="M2 14.5H14" stroke="#f71963" stroke-width="1.4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M10.1429 1.5L12.7143 4.1L5.42857 11.4667L2 12.3333L2.85714 8.86667L10.1429 1.5Z" stroke="#f71963" stroke-width="1.4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M8.42859 3.2334L11 5.8334" stroke="#f71963" stroke-width="1.4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </Link>
+              </div>
             </div>
             <div className="f5 bb b-Muted-5 mb7 pb7 fw3 lh-copy">{description}</div>
-          </div>
-          <div className="h1">
-            <Link page="formula/projects/detail" params={{edition, id}}>
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect width="16" height="16" fill="white"/>
-              <path d="M2 14.5H14" stroke="#CACBCC" strokeWidth="1.4" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
-              <path d="M10.1429 1.5L12.7143 4.1L5.42857 11.4667L2 12.3333L2.85714 8.86667L10.1429 1.5Z" stroke="#CACBCC" strokeWidth="1.4" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
-              <path d="M8.42859 3.2334L11 5.8334" stroke="#CACBCC" strokeWidth="1.4" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </Link>
           </div>
         </div>
         <section>
           <div className="f4 fw5"><FormattedMessage id="formula.team" /></div>
-          <ul className="list pl0 mb7">
+          <ul className="list pl0 mb7 lh-copy">
             {team && team.map((u) => <li key={u.id}>{u.name} - {u.email}</li>)}
           </ul>
         </section>
