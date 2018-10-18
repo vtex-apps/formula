@@ -19,8 +19,8 @@ class FormulaEdition extends Component<RuntimeProps & ProjectsData> {
 
     return (
       <Fragment>
-        <Navigation edition={edition} setPage={(page) => runtime.navigate({page, params: {edition}})} currentPage={runtime.page} />
-        {runtime.page === 'formula/projects/list' ? <ProjectsList state={'Voting'} edition={edition} /> : <FinalistsList state={'Registration'} edition={edition} />}
+        <Navigation edition={edition} state={'Registration'} setPage={(page) => runtime.navigate({page, params: {edition}})} currentPage={runtime.page} />
+        {runtime.page === 'formula/projects/list' ? <ProjectsList state={'Results'} edition={edition} /> : <FinalistsList state={'Registration'} edition={edition} />}
       </Fragment>
     )
   }

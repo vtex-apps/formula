@@ -14,12 +14,14 @@ interface ProjectCardProps {
   hasTeam: boolean
 }
 
-function getVoteClass(value, current) {
-  const activeClasses = 'br-pill bg-emphasis c-on-base--inverted flex items-center justify-center fw3 f4 mr6 pointer'
-  const inactiveClasses = 'br-pill bg-base ba b--muted-3 c-muted-3 flex items-center justify-center fw3 f4 mr6 pointer'
-
-  if (value >= current) { return activeClasses }
-  return inactiveClasses
+function getVoteClass(value, current, state) {
+  const activeClasses = 'br-pill bg-emphasis c-on-base--inverted flex items-center justify-center fw3 f4 mr6'
+  const inactiveClasses = 'br-pill bg-base ba b--muted-3 c-muted-3 flex items-center justify-center fw3 f4 mr6'
+  let classes = value >= current ? activeClasses : inactiveClasses
+  if (state === 'Voting') {
+    classes += ' pointer'
+  }
+  return classes
 }
 
 export default class ProjectCard extends Component<ProjectCardProps & Project> {
@@ -69,6 +71,7 @@ export default class ProjectCard extends Component<ProjectCardProps & Project> {
           <div className="w-100">
             <div className="flex justify-between items-center pb6 w-100">
               <div className="f4 fw5 pb3">{name}</div>
+              {state === 'Registration' || state === 'Running' ?
               <div className="h1">
                 <Link page="formula/projects/detail" params={{edition, id}}>
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -79,22 +82,24 @@ export default class ProjectCard extends Component<ProjectCardProps & Project> {
                   </svg>
                 </Link>
               </div>
+              : null}
             </div>
             <div className="f5 bb b--muted-5 mb7 pb7 fw3 lh-copy">{description}</div>
           </div>
         </div>
-        <section>
+        {state !== 'Voting' ? <section>
           <div className="f4 fw5"><FormattedMessage id="formula.team" /></div>
           <ul className="list pl0 mb7 lh-copy">
             {team && team.map((u) => <li key={u.id}>{u.name} - {u.email}</li>)}
           </ul>
-        </section>
-        {!isOwner && joinOrLeave}
+        </section> : null}
+        {state === 'Registration' || state === 'Running' ? !isOwner && joinOrLeave : null}
 
+        {state === 'Voting' || state === 'Results' ?
         <div>
           <div className="flex justify-between fw7">
             <div>Evaluation</div>
-            <div>Total Score: 5</div>
+            <div>Total Score: {vote.relevance + vote.execution}</div>
           </div>
           <div className="pt6">
             <div className="c-muted-2 f5">
@@ -109,7 +114,7 @@ export default class ProjectCard extends Component<ProjectCardProps & Project> {
               {(updateVote) => (
               <Fragment>
                 {[1,2,3,4,5].map(idx => (
-                  <div key={`relevance-${idx}`} className={getVoteClass(vote.relevance,idx)} style={{ width: '48px', height: '48px' }} onClick={() => updateVote({variables: {edition, id, execution: vote.execution, relevance: idx}})}>{idx}</div>
+                  <div key={`relevance-${idx}`} className={getVoteClass(vote.relevance,idx,state)} style={{ width: '48px', height: '48px' }} onClick={() => state === 'Voting' ? updateVote({variables: {edition, id, execution: vote.execution, relevance: idx}}) : null}>{idx}</div>
                 ))}
               </Fragment>
               )}
@@ -128,13 +133,13 @@ export default class ProjectCard extends Component<ProjectCardProps & Project> {
               {(updateVote) => (
               <Fragment>
                 {[1,2,3,4,5].map(idx => (
-                  <div key={`relevance-${idx}`} className={getVoteClass(vote.execution,idx)} style={{ width: '48px', height: '48px' }} onClick={() => updateVote({variables: {edition, id, relevance: vote.relevance, execution: idx}})}>{idx}</div>
+                  <div key={`relevance-${idx}`} className={getVoteClass(vote.execution,idx,state)} style={{ width: '48px', height: '48px' }} onClick={() => state === 'Voting' ? updateVote({variables: {edition, id, relevance: vote.relevance, execution: idx}}) : null}>{idx}</div>
                 ))}
               </Fragment>
               )}
             </Mutation>
           </div>
-        </div>
+        </div> : null}
       </div>
     )
   }
