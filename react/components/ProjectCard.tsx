@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { Mutation } from 'react-apollo'
 import { FormattedMessage } from 'react-intl'
 import { Link } from 'render'
-import { Button } from 'vtex.styleguide'
+import { Button, Spinner } from 'vtex.styleguide'
 
 import JoinProjectMutation from '../queries/joinProject.graphql'
 import LeaveProjectMutation from '../queries/leaveProject.graphql'
@@ -14,11 +14,11 @@ interface ProjectCardProps {
   hasTeam: boolean
 }
 
-function getVoteClass(value, current, state) {
-  const activeClasses = 'br-pill bg-emphasis c-on-base--inverted flex items-center justify-center fw3 f4 mr4-ns'
+function getVoteClass(value, current, state, voting) {
+  const activeClasses = 'br-pill bg-emphasis c-on-base--inverted flex items-center justify-center fw3 f4 mr4-ns' + (state === 'RESULTS' ? ' bg-muted-2' : '')
   const inactiveClasses = 'br-pill bg-base ba b--muted-3 c-muted-3 flex items-center justify-center fw3 f4 mr4-ns'
   let classes = value >= current ? activeClasses : inactiveClasses
-  if (state === 'VOTING') {
+  if (state === 'VOTING' && !voting) {
     classes += ' pointer'
   }
   return classes
@@ -27,6 +27,11 @@ function getVoteClass(value, current, state) {
 export default class ProjectCard extends Component<ProjectCardProps & Project> {
   constructor(props: any) {
     super(props)
+
+    this.state = {
+      votingCriteria: null,
+      votingScore: null
+    }
   }
 
   public render() {
@@ -110,13 +115,11 @@ export default class ProjectCard extends Component<ProjectCardProps & Project> {
             </div>
           </div>
           <div className="flex mt7 w-100 bb b--muted-5 pb7 justify-start-ns justify-between">
-            <Mutation mutation={voteMutation} refetchQueries={[refetchProjectsQuery]}>
+            <Mutation mutation={voteMutation} refetchQueries={[refetchProjectsQuery]} awaitRefetchQueries>
               {(updateVote) => (
-              <Fragment>
-                {[1,2,3,4,5].map(idx => (
-                  <div key={`relevance-${idx}`} className={getVoteClass(vote.relevance,idx,state)} style={{ width: '48px', height: '48px' }} onClick={() => state === 'VOTING' ? updateVote({variables: {edition, id, execution: vote.execution, relevance: idx}}) : null}>{idx}</div>
-                ))}
-              </Fragment>
+                <Fragment>
+                  {[1,2,3,4,5].map(this.renderVotingCriteria('relevance', updateVote))}
+                </Fragment>
               )}
             </Mutation>
           </div>
@@ -129,17 +132,52 @@ export default class ProjectCard extends Component<ProjectCardProps & Project> {
             </div>
           </div>
           <div className="flex mt7 w-100 justify-start-ns justify-between">
-            <Mutation mutation={voteMutation} refetchQueries={[refetchProjectsQuery]}>
+            <Mutation mutation={voteMutation} refetchQueries={[refetchProjectsQuery]} awaitRefetchQueries>
               {(updateVote) => (
               <Fragment>
-                {[1,2,3,4,5].map(idx => (
-                  <div key={`relevance-${idx}`} className={getVoteClass(vote.execution,idx,state)} style={{ width: '48px', height: '48px' }} onClick={() => state === 'VOTING' ? updateVote({variables: {edition, id, relevance: vote.relevance, execution: idx}}) : null}>{idx}</div>
-                ))}
+                {[1,2,3,4,5].map(this.renderVotingCriteria('execution', updateVote))}
               </Fragment>
               )}
             </Mutation>
           </div>
         </div> : null}
+      </div>
+    )
+  }
+
+  private renderVotingCriteria = (criteria: string, updateVote: any) => (idx: number) => {
+    const {state, vote, edition, id} = this.props
+    const votingCriteria = this.state.votingCriteria === criteria
+    const votingScore = this.state.votingScore
+
+    const handleVoteClick = () => {
+      if (votingCriteria || state !== 'VOTING') {
+        return null
+      }
+      this.setState({
+        votingCriteria: criteria,
+        votingScore: idx,
+      })
+      return updateVote({variables: {
+        edition,
+        id,
+        ...vote,
+        [criteria]: idx,
+      }}).then(() => {
+        this.setState({
+          votingCriteria: null,
+          votingScore: null,
+        })
+      })
+    }
+
+    return (
+      <div
+        key={`relevance-${idx}`}
+        className={getVoteClass(votingCriteria ? votingScore - 1 : vote[criteria], idx, state, votingCriteria)}
+        style={{ width: '48px', height: '48px' }}
+        onClick={handleVoteClick}>
+        {votingCriteria && votingScore === idx ? <Spinner /> : idx}
       </div>
     )
   }
