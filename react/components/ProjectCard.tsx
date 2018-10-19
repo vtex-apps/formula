@@ -35,7 +35,7 @@ export default class ProjectCard extends Component<ProjectCardProps & Project> {
   }
 
   public render() {
-    const { id, edition, name, description, owner, team, email, hasTeam, vote, state, nameIcon } = this.props
+    const { id, edition, name, description, owner, demoURL,team, email, hasTeam, vote, state, nameIcon } = this.props
 
     const refetchProjectsQuery = {
       query: ProjectsQuery,
@@ -90,6 +90,11 @@ export default class ProjectCard extends Component<ProjectCardProps & Project> {
               : null}
             </div>
             <div className="f5 bb b--muted-5 mb7 pb7 fw3 lh-copy">{description}</div>
+            {demoURL && <div className="f5 bb b--muted-5 mb7 pb7 fw3 lh-copy">
+              <a className="link c-emphasis" href={demoURL} target="__blank">
+                <FormattedMessage id="formula.viewDemo"/>
+              </a>
+            </div>}
           </div>
         </div>
         {state !== 'VOTING' ? <section>

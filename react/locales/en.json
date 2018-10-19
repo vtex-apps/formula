@@ -17,5 +17,6 @@
   "formula.status.voting.details": "Time to vote.",
   "formula.status.results": "That was great.",
   "formula.status.results.details": "Thanks!",
-  "formula.projectDetails": "Project"
+  "formula.projectDetails": "Project",
+  "formula.viewDemo": "View Demo"
 }
