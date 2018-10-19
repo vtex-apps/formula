@@ -12,6 +12,8 @@ interface TimerProps {
 
 const nowMillis = new Date().getTime()
 
+let refreshTimeout: any
+
 export default class Timer extends Component<TimerProps> {
   public render() {
     const { edition } = this.props
@@ -26,6 +28,13 @@ export default class Timer extends Component<TimerProps> {
           const status = data && data.info && data.info.status
           const total = data && data.info && data.info.timeTotalSeconds
           const countdownRunning = status === 'REGISTRATION' || status === 'RUNNING'
+
+          if (countdownRunning && !refreshTimeout) {
+            refreshTimeout = setTimeout(() => {
+              console.log('Time\'s up!')
+              window.location.reload()
+            }, remaining * 1000)
+          }
 
           const barWidth = status === 'REGISTRATION'
             ? 0
@@ -50,10 +59,10 @@ export default class Timer extends Component<TimerProps> {
                 <div className="f5 fw3">
                   <FormattedMessage id={`formula.status.${status.toLowerCase()}`} />
                 </div>
-                <div className="fw3 pb5 dn-ns db" style={{fontSize : '5em'}}>
+                <div className="fw3 pb5 dn-ns db" style={{fontSize: '5em'}}>
                   { countdown || afterContent }
                 </div>
-                <div className="fw3 pb5 dn db-ns" style={{fontSize : '10em'}}>
+                <div className="fw3 pb5 dn db-ns" style={{fontSize: countdownRunning ? '10em' : '7em'}}>
                   { countdown || afterContent }
                 </div>
                 <div className="w-100 bg-marine h2 relative mb7 br2" style={{height: '0.25rem'}}>
