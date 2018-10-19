@@ -6,6 +6,7 @@ import { withRuntimeContext } from 'render'
 import { Button, Input, Textarea } from 'vtex.styleguide'
 
 import DeleteProjectMutation from '../queries/deleteProject.graphql'
+import ProjectDetailQuery from '../queries/project.graphql'
 import ProjectsQuery from '../queries/projects.graphql'
 import UpdateProjectMutation from '../queries/updateProject.graphql'
 
@@ -47,10 +48,18 @@ class ProjectForm extends Component<ProjectFormProps & RuntimeProps, ProjectForm
       }
     }
 
+    const refetchProjectDetailQuery = {
+      query: ProjectDetailQuery,
+      variables: {
+        edition,
+        id: project.id,
+      }
+    }
+
     const handleDeleteSuccess = () => this.props.runtime.navigate({page: 'formula/projects/list', params: {edition}})
 
     const deleteButton = isOwner && project.id && (
-      <Mutation mutation={DeleteProjectMutation} refetchQueries={[refetchProjectsQuery]}>
+      <Mutation mutation={DeleteProjectMutation} refetchQueries={[refetchProjectsQuery, refetchProjectDetailQuery]}>
         {(deleteProject) => {
           return (
             <Button variation="tertiary" onClick={() => deleteProject({variables: {edition, id: project.id}}).then(handleDeleteSuccess)} >

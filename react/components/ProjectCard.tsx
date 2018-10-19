@@ -76,7 +76,7 @@ export default class ProjectCard extends Component<ProjectCardProps & Project> {
           <div className="w-100">
             <div className="flex justify-between items-center pb6 w-100">
               <div className="f4 fw5 pb3">{nameIcon}{name}</div>
-              {state === 'REGISTRATION' || state === 'RUNNING' ?
+              {state === 'REGISTRATION' || state === 'RUNNING' || state === 'VOTING' ?
               <div className="h1">
                 <Link page="formula/projects/detail" params={{edition, id}}>
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
