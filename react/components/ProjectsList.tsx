@@ -25,7 +25,7 @@ export default class ProjectsList extends Component<ProjectsListData> {
           return data.projects.map((p: Project) => {
             const vote = data.votes.find(current => current.projectID === p.id) || {execution: 0, relevance: 0}
 
-            return <ProjectCard vote={vote} state={state} key={p.id} {...p} email={data.profile.email} edition={edition} hasTeam={hasTeam} />
+            return <ProjectCard nameIcon={''} vote={vote} state={state} key={p.id} {...p} email={data.profile.email} edition={edition} hasTeam={hasTeam} />
           })
         }}
       </Query>

@@ -13,6 +13,17 @@ interface ProjectsListData {
 }
 
 export default class FinalistsList extends Component<ProjectsListData> {
+  public count: number = 0
+
+  public getWinnerIcon() {
+    this.count++
+    if (this.count === 3) { return '🥉 ' }
+    if (this.count === 2) { return '🥈 ' }
+    if (this.count === 1) { return '🥇 ' }
+
+    return ''
+  }
+
   public render () {
     const { edition, state } = this.props
 
@@ -28,8 +39,8 @@ export default class FinalistsList extends Component<ProjectsListData> {
           }
 
           const hasTeam = data.projects && !!data.projects.find((p: Project) => p.team && p.team.find(({ email }) => email === data.profile.email))
-          return data.projects.map((p: Project) =>
-            <ProjectCard key={p.id} {...p} email={data.profile.email} edition={edition} hasTeam={hasTeam} />
+          return data.projects.slice(0,3).map((p: Project) =>
+            <ProjectCard nameIcon={this.getWinnerIcon()} key={p.id} {...p} email={data.profile.email} edition={edition} hasTeam={hasTeam} />
           )
         }}
       </Query>

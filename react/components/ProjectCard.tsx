@@ -30,7 +30,7 @@ export default class ProjectCard extends Component<ProjectCardProps & Project> {
   }
 
   public render() {
-    const { id, edition, name, description, owner, team, email, hasTeam, vote, state } = this.props
+    const { id, edition, name, description, owner, team, email, hasTeam, vote, state, nameIcon } = this.props
 
     const refetchProjectsQuery = {
       query: ProjectsQuery,
@@ -70,7 +70,7 @@ export default class ProjectCard extends Component<ProjectCardProps & Project> {
         <div className="inline-flex w-100">
           <div className="w-100">
             <div className="flex justify-between items-center pb6 w-100">
-              <div className="f4 fw5 pb3">{name}</div>
+              <div className="f4 fw5 pb3">{nameIcon}{name}</div>
               {state === 'REGISTRATION' || state === 'RUNNING' ?
               <div className="h1">
                 <Link page="formula/projects/detail" params={{edition, id}}>
