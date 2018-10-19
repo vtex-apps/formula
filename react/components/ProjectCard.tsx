@@ -15,8 +15,8 @@ interface ProjectCardProps {
 }
 
 function getVoteClass(value, current, state) {
-  const activeClasses = 'br-pill bg-emphasis c-on-base--inverted flex items-center justify-center fw3 f4 mr6'
-  const inactiveClasses = 'br-pill bg-base ba b--muted-3 c-muted-3 flex items-center justify-center fw3 f4 mr6'
+  const activeClasses = 'br-pill bg-emphasis c-on-base--inverted flex items-center justify-center fw3 f4 mr4-ns'
+  const inactiveClasses = 'br-pill bg-base ba b--muted-3 c-muted-3 flex items-center justify-center fw3 f4 mr4-ns'
   let classes = value >= current ? activeClasses : inactiveClasses
   if (state === 'VOTING') {
     classes += ' pointer'
@@ -109,7 +109,7 @@ export default class ProjectCard extends Component<ProjectCardProps & Project> {
               Project impact on VTEX
             </div>
           </div>
-          <div className="flex mt7 w-100 bb b--muted-5 pb7">
+          <div className="flex mt7 w-100 bb b--muted-5 pb7 justify-start-ns justify-between">
             <Mutation mutation={voteMutation} refetchQueries={[refetchProjectsQuery]}>
               {(updateVote) => (
               <Fragment>
@@ -128,7 +128,7 @@ export default class ProjectCard extends Component<ProjectCardProps & Project> {
               Project quality level
             </div>
           </div>
-          <div className="flex mt7">
+          <div className="flex mt7 w-100 justify-start-ns justify-between">
             <Mutation mutation={voteMutation} refetchQueries={[refetchProjectsQuery]}>
               {(updateVote) => (
               <Fragment>
