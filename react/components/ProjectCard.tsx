@@ -35,7 +35,7 @@ export default class ProjectCard extends Component<ProjectCardProps & Project> {
   }
 
   public render() {
-    const { id, edition, name, description, owner, demoURL,team, email, hasTeam, vote, state, nameIcon } = this.props
+    const { id, edition, name, description, owner, demoURL, team, email, hasTeam, vote, state} = this.props
 
     const refetchProjectsQuery = {
       query: ProjectsQuery,
@@ -75,7 +75,7 @@ export default class ProjectCard extends Component<ProjectCardProps & Project> {
         <div className="inline-flex w-100">
           <div className="w-100">
             <div className="flex justify-between items-center pb6 w-100">
-              <div className="f4 fw5 pb3">{nameIcon}{name}</div>
+              <div className="f4 fw5 pb3">{name}</div>
               {state === 'REGISTRATION' || state === 'RUNNING' || state === 'VOTING' ?
               <div className="h1">
                 <Link page="formula/projects/detail" params={{edition, id}}>
@@ -156,7 +156,7 @@ export default class ProjectCard extends Component<ProjectCardProps & Project> {
     const votingScore = this.state.votingScore
 
     const handleVoteClick = () => {
-      if (votingCriteria || state !== 'VOTING') {
+      if (this.state.votingCriteria || state !== 'VOTING') {
         return null
       }
       this.setState({
