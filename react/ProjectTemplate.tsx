@@ -19,7 +19,7 @@ export default class ProjectTemplate extends Component<{} & ProjectsData> {
   }
 
   public render() {
-    const { params: { edition, banana } } = this.props
+    const { params: { edition, stuff } } = this.props
     return (
       <Query query={ProfileQuery} ssr={false}>
         {({ loading, error, data }) => {
