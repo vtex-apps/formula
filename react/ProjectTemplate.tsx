@@ -15,11 +15,11 @@ interface ProjectsData {
 
 export default class ProjectTemplate extends Component<{} & ProjectsData> {
   constructor(props: any) {
-    super(props)
+    super(props, 1)
   }
 
   public render() {
-    const { params: { edition } } = this.props
+    const { params: { edition, banana } } = this.props
     return (
       <Query query={ProfileQuery} ssr={false}>
         {({ loading, error, data }) => {
