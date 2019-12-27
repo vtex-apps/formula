@@ -1,6 +1,6 @@
 {
   "name": "vtex.formula",
-  "version": null,
+  "version": "0.3.1",
   "scripts": {
     "lint": "tsc --noEmit && tslint -c tslint.json './**/*.ts'"
   },
